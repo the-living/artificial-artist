@@ -5,8 +5,9 @@
 from aa_enviroment import *
 ```
 
+##METHODS
 
-## Instantiating Environment class
+### Instantiating Environment class
 ```python
 env = Environment( fp )
 ```
@@ -15,7 +16,7 @@ env = Environment( fp )
 #### Returns:
 **Environment** (_object_)
 
-## Reset Environment
+### Reset Environment
 ```python
 env.reset( fp )
 ```
@@ -26,7 +27,7 @@ _Runs all setup functions to load new source image, resize, and initialize canva
 **None**
 
 
-## Adjust Stroke Opacity
+### Adjust Stroke Opacity
 ```python
 env.setBrushOpacity( opacity )
 ```
@@ -36,7 +37,7 @@ _Alters the opacity of simulated paint from 0.0 (100% transparent) to 1.0 (100% 
 #### Returns:
 **None**
 
-## Set Reward Blur Level
+### Set Reward Blur Level
 ```python
 env.setRewardBlur( level )
 ```
@@ -48,7 +49,7 @@ _Set blurring intensity - lower values equal less blurring, and higher values eq
 
 
 
-## Display Current State (Visual)
+### Display Current State (Visual)
 ```python
 env.showSource() #displays source image
 env.showCanvas() #display canvas
@@ -62,7 +63,7 @@ _Plots the layers of the environments states. Individual commands display elemen
 #### Returns:
 **None**
 
-## Update State
+### Update State
 ```python
 env.update( action )
 ```
@@ -76,7 +77,7 @@ _Executes an input action._
 #### Returns:
 **None**
 
-## Get Current State (Values)
+### Get Current State (Values)
 ```python
 env.getState()
 ```
@@ -86,7 +87,7 @@ _Returns combined state elements as numpy stack._
 #### Returns:
 **state** (_ndarray, (H,W,3)_) NumPy array stack of source, canvas, and brush position.
 
-## Get Reward
+### Get Reward
 ```python
 env.getReward()
 ```
@@ -96,7 +97,7 @@ _Returns a scalar value representing the mean absolute difference between the so
 #### Returns:
 **reward** (_float_) Mean distance between blurred source image and blurred canvas.
 
-## Get Combined State & Reward
+### Get Combined State & Reward
 ```python
 env.getUpdate( action )
 ```
