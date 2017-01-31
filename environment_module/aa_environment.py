@@ -24,7 +24,7 @@ class Environment:
             self.resize( w, h )
             self.initCanvas()
             self.initBrush()
-            self.setBrushOpacity()
+            self.setStrokeOpacity()
             self.setRewardBlur()
 
             print "Succesfully loaded image at %s" %(fp)
@@ -57,7 +57,7 @@ class Environment:
         self.brush[y_pos, x_pos] = 255
 
     #Set brush opacity, input range( 0.0 to 1.0 )
-    def setBrushOpacity(self, x=0.25):
+    def setStrokeOpacity(self, x=0.25):
         if x < 0 or x > 1:
             print "ERROR: Stroke opacity must be between 0.0 and 1.0"
         else:
@@ -207,11 +207,11 @@ class Environment:
         source_blur = self.blurPass( self.source/255, self.blur )
         canvas_blur = self.blurPass( self.invert(self.canvas)/255, self.blur )
 
-        diff = np.absolute(np.subtract( source_blur, canvas_blur ))
+        self.diff = np.absolute(np.subtract( source_blur, canvas_blur ))
 
-        self.display( diff )
+        #self.display( diff )
 
-        return np.mean(1.0-diff)
+        return np.mean(1.0-self.diff)
 
     def setRewardBlur(self, b=1.0):
         self.blur = b
@@ -219,9 +219,12 @@ class Environment:
     def blurPass(self, frame, level):
         return ndimage.filters.gaussian_filter(frame, level)
 
+    def showReward(self):
+        self.display(self.diff)
+
     # - - - - - - - - - - - - - - - -
     # COMPLETE I/O
     # - - - - - - - - - - - - - - - -
     def getUpdate(self, action):
         self.update(action)
-        return [getState(), getReward()]
+        return [self.getState(), self.getReward()]

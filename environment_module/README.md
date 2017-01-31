@@ -29,7 +29,7 @@ _Runs all setup functions to load new source image, resize, and initialize canva
 
 ### Adjust Stroke Opacity
 ```python
-env.setBrushOpacity( opacity )
+env.setStrokeOpacity( opacity )
 ```
 _Alters the opacity of simulated paint from 0.0 (100% transparent) to 1.0 (100% opaque)._
 #### Parameters:
